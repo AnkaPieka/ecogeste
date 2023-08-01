@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ObjectType, Field } from 'type-graphql';
 import { Challenge } from '../Challenge';
 import { Ecogeste } from '../Ecogeste';
@@ -6,6 +6,10 @@ import { Ecogeste } from '../Ecogeste';
 @ObjectType()
 @Entity()
 export class ChallengeEcogesteList {
+  @Field()
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Field()
   @Column()
   challenge_id: number;
@@ -15,7 +19,7 @@ export class ChallengeEcogesteList {
   ecogeste_id: number;
 
   @Field(() => Challenge)
-  @ManyToOne(() => Challenge, (challenge) => challenge.ecogestes, {
+@ManyToOne(() => Challenge, (challenge) => challenge.ecogestes, {
     onDelete: 'CASCADE',
   })
   ecogestes: Ecogeste[];

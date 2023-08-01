@@ -2,7 +2,6 @@ import { Field, ObjectType } from 'type-graphql';
 import {
   Column,
   Entity,
-  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -36,16 +35,5 @@ export class Ecogeste {
   category: string;
 
   @ManyToMany(() => Challenge)
-  @JoinTable({
-    name: 'challenge_ecogeste_list',
-    joinColumn: {
-      name: 'challenge',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'ecogeste',
-      referencedColumnName: 'id',
-    },
-  })
   challenges: Challenge[];
 }

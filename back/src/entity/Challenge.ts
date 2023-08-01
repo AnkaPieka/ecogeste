@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Ecogeste } from './Ecogeste';
 import { User } from './User';
-import { Time } from './interfaces';
+// import { Time } from './interfaces';
 
 @ObjectType()
 @Entity()
@@ -42,9 +42,9 @@ export class Challenge {
   @Column()
   creator: number;
 
-  @Field((type) => String)
+  @Field(() => String)
   @Column()
-  duration: Time;
+  duration: string;
 
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.challenges, {
@@ -53,28 +53,17 @@ export class Challenge {
   user: User;
 
   @ManyToMany(() => User)
-  @JoinTable({
-    name: 'user_participation',
-    joinColumn: {
-      name: 'user',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'challenge',
-      referencedColumnName: 'id',
-    },
-  })
   users: User[];
 
   @ManyToMany(() => Ecogeste)
   @JoinTable({
     name: 'challenge_ecogeste_list',
     joinColumn: {
-      name: 'ecogeste',
+      name: 'challenge',
       referencedColumnName: 'id',
     },
     inverseJoinColumn: {
-      name: 'challenge',
+      name: 'ecogeste',
       referencedColumnName: 'id',
     },
   })

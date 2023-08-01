@@ -1,11 +1,15 @@
 import { Field, ObjectType } from 'type-graphql';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne,PrimaryGeneratedColumn} from 'typeorm';
 import { User } from '../User';
 import { Challenge } from '../Challenge';
 
 @ObjectType()
 @Entity()
 export class UserParticipation {
+  @Field()
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Field()
   @Column()
   user_id: number;

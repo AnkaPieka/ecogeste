@@ -17,6 +17,7 @@ import { Role } from './Role';
 @ObjectType()
 @Entity()
 export class User {
+
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
@@ -69,11 +70,11 @@ export class User {
   @JoinTable({
     name: 'user_participation',
     joinColumn: {
-      name: 'challenge',
+      name: 'user',
       referencedColumnName: 'id',
     },
     inverseJoinColumn: {
-      name: 'user',
+      name: 'challenge',
       referencedColumnName: 'id',
     },
   })
