@@ -64,4 +64,18 @@ export class User {
     },
   })
   roles: Role[];
+
+  @ManyToMany(() => Challenge)
+  @JoinTable({
+    name: 'user_participation',
+    joinColumn: {
+      name: 'challenge',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'user',
+      referencedColumnName: 'id',
+    },
+  })
+  users: Challenge[];
 }

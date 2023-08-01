@@ -1,7 +1,7 @@
-import { gql, useMutation } from "@apollo/client";
-import blank_profile from "../assets/profile.png";
-import Skill, { ISkillProps } from "./Skill";
-import { GET_WILDERS_AND_SKILLS } from "../components/HomePage";
+import { gql, useMutation } from '@apollo/client';
+import blank_profile from '../assets/profile.png';
+import Skill, { ISkillProps } from './Skill';
+import { GET_WILDERS_AND_SKILLS } from './HomePage';
 
 export interface IWilderProps {
   name: string;
@@ -32,8 +32,7 @@ const Wilder = ({ name, id, skills }: IWilderProps) => {
       <img src={blank_profile} alt="Jane Doe Profile" />
       <h3>{name}</h3>
       <button
-        onClick={() => deleteWilder({ variables: { deleteWilderId: id } })}
-      >
+        onClick={() => deleteWilder({ variables: { deleteWilderId: id } })}>
         Delete
       </button>
       <p>

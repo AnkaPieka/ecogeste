@@ -1,5 +1,13 @@
 import { Field, ObjectType } from 'type-graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Ecogeste } from './Ecogeste';
 import { User } from './User';
 import { Time } from './interfaces';
 
@@ -43,4 +51,32 @@ export class Challenge {
     onDelete: 'CASCADE',
   })
   user: User;
+
+  @ManyToMany(() => User)
+  @JoinTable({
+    name: 'user_participation',
+    joinColumn: {
+      name: 'user',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'challenge',
+      referencedColumnName: 'id',
+    },
+  })
+  users: User[];
+
+  @ManyToMany(() => Ecogeste)
+  @JoinTable({
+    name: 'challenge_ecogeste_list',
+    joinColumn: {
+      name: 'ecogeste',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'challenge',
+      referencedColumnName: 'id',
+    },
+  })
+  ecogestes: Ecogeste[];
 }

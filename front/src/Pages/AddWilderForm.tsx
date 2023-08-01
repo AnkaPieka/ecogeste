@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useMutation, gql } from "@apollo/client";
-import { GET_WILDERS_AND_SKILLS } from "../components/HomePage";
+import { useMutation, gql } from '@apollo/client';
+import { GET_WILDERS_AND_SKILLS } from './HomePage';
 
 const ADD_WILDER = gql`
   mutation Mutation($name: String!) {
@@ -13,7 +13,7 @@ const ADD_WILDER = gql`
 `;
 
 const AddWilderForm = () => {
-  const [wilderName, setName] = useState("");
+  const [wilderName, setName] = useState('');
   const [addNewWilder, { data, error, loading }] = useMutation(ADD_WILDER, {
     refetchQueries: [GET_WILDERS_AND_SKILLS],
   });
@@ -30,8 +30,7 @@ const AddWilderForm = () => {
       onSubmit={async (e) => {
         e.preventDefault();
         addNewWilder({ variables: { name: wilderName } });
-      }}
-    >
+      }}>
       <h3>Add Wilder</h3>
       <label>Name </label>
       <input
