@@ -3,13 +3,14 @@ import * as jwt from 'jsonwebtoken';
 import dataSource from './utils';
 import { buildSchema } from 'type-graphql';
 import { ApolloServer } from 'apollo-server';
-import WilderResolver from './resolver/WilderResolver';
+import UserResolver from './resolver/UserResolver';
+// import WilderResolver from './resolver/WilderResolver';
 
 const start = async (): Promise<void> => {
   await dataSource.initialize();
 
   const typeGraphQLgeneratedSchema = await buildSchema({
-    resolvers: [WilderResolver],
+    resolvers: [UserResolver],
     authChecker: ({ context }) => {
       console.log('context from authchecker', context);
       if (context.email !== undefined) {

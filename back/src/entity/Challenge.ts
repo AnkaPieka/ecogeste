@@ -42,7 +42,7 @@ export class Challenge {
   @Column()
   creator: number;
 
-  @Field()
+  @Field((type) => String)
   @Column()
   duration: Time;
 
