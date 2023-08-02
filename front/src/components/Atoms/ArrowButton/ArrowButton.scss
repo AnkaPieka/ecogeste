@@ -1,0 +1,31 @@
+#arrowButton {
+  border-radius: 50%;
+  background: linear-gradient(#452e63, #02e89b);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &.sm {
+    height: 40px;
+    min-height: 40px;
+    width: 40px;
+    min-width: 40px;
+  }
+
+  &.md {
+    height: 60px;
+    width: 60px;
+  }
+
+  &.lg {
+    height: 80px;
+    width: 80px;
+  }
+
+  svg {
+    min-height: 80%;
+    min-width: 80%;
+  }
+}

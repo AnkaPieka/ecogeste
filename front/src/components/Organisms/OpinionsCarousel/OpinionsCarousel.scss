@@ -1,0 +1,10 @@
+#opinionCarousel {
+  display: flex;
+  gap: 2;
+  grid-gap: 2;
+  align-items: center;
+
+  .opinions {
+    display: flex;
+  }
+}

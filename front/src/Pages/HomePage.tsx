@@ -1,7 +1,6 @@
-import { Navigate } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
-import Wilder, { IWilderProps } from "./Wilder";
-import AddWilderForm from "./AddWilderForm";
+import { gql } from '@apollo/client';
+import OpinionsCarousel from '../components/Organisms/OpinionsCarousel/OpinionsCarousel';
+import { IWilderProps } from './Wilder';
 
 interface ISkillFromAPI {
   id: number;
@@ -51,44 +50,12 @@ export const GET_WILDERS_AND_SKILLS = gql`
 `;
 
 const HomePage = () => {
-  const { loading, error, data } = useQuery(GET_WILDERS_AND_SKILLS);
-
-  if (localStorage.getItem("token") === null) {
-    return <Navigate to="/login" />;
-  }
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-  console.log(data);
   // console.log(formatWildersFromApi(data.wilders));
   return (
     <div>
-      <header>
-        <div className="container">
-          <h1>Wilders Book reload is working ?</h1>
-        </div>
-      </header>
       <main className="container">
-        <AddWilderForm />
-        <h2>Wilders</h2>
-        <section className="card-row">
-          {formatWildersFromApi(data.wilders).map((wilder) => {
-            return (
-              <Wilder
-                key={wilder.id}
-                name={wilder.name}
-                id={wilder.id}
-                skills={wilder.skills}
-              />
-            );
-          })}
-        </section>
+        <OpinionsCarousel />
       </main>
-      <footer>
-        <div className="container">
-          <p>&copy; 2023 Wild Code School</p>
-        </div>
-      </footer>
     </div>
   );
 };
