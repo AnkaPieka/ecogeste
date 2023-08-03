@@ -51,6 +51,15 @@ async updateUser(@Arg("id") id: number, @Arg("data") data: User) {
   if (!user) {
     throw new Error(`The user with id: ${id} does not exist!`);
   }
+  if (name) {
+    userToUpdate.name = name;
+  }
+  if (email) {
+    userToUpdate.email = email;
+  }
+  if (password) {
+    userToUpdate.password = password;
+  }
 
   // Object.assign(user, data);
   // await user.save();
