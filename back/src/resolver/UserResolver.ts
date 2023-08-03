@@ -43,33 +43,35 @@ class UserResolver {
   }
 
   @Mutation(() => User)
-async updateUser(@Arg("id") id: number, @Arg("data") data: User) {
-  const user = await  dataSource
-  .getRepository(User) 
-  .find({ where: { id }});
+  async updateUser(@Arg("id") id: number,
+  @Arg('name', { nullable: true }) name: string,
+  @Arg('email', { nullable: true }) email: string,
+  @Arg('password', { nullable: true }) password: string
+  ): Promise<User> {
+    
+  const user = await dataSource
+    .getRepository(User)
+    .findOne({where: {id}});
 
-  if (!user) {
+  if (user === null) {
     throw new Error(`The user with id: ${id} does not exist!`);
   }
-  if (name) {
-    userToUpdate.name = name;
+
+  // Effectuez les mises à jour sur l'utilisateur si les champs sont fournis
+  if (name !== "") {
+    user.name = name;
   }
-  if (email) {
-    userToUpdate.email = email;
+  if (email !== "") {
+    user.email = email;
   }
-  if (password) {
-    userToUpdate.password = password;
+  if (password !== "") {
+    user.password = password;
   }
 
-  // Object.assign(user, data);
-  // await user.save();
+  const updatedUser = await dataSource.getRepository(User).save(user);
+  return updatedUser;
+}
+}
 
-  return user;
-}
-  return []
-  // get user => login
-  // modify => update (mdp, userName)
-  // delete user => delete
-}
 
 export default UserResolver;
