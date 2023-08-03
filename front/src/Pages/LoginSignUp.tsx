@@ -1,8 +1,17 @@
-import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 const LoginSignUp = () => {
+  const location = useLocation();
+  const showLogin = new URLSearchParams(location.search).get('show') === 'login';
+
   return (
-    <div>LoginSignUp</div>
+    <div className="signup-page">
+      {showLogin ? (
+        <div className="login-container"> COUCOU </div>
+      ) : (
+        <div className="signup-container"> AUREVOIR </div>
+      )}
+    </div>
   )
 }
 
