@@ -24,7 +24,7 @@ const start = async (): Promise<void> => {
   const server = new ApolloServer({
     schema: typeGraphQLgeneratedSchema,
     context: ({ req }) => {
-      console.log('req', req.headers.authorization);
+      // console.log('req', req.headers.authorization);
       if (
         req.headers.authorization !== undefined &&
         req.headers.authorization !== ''
@@ -41,7 +41,6 @@ const start = async (): Promise<void> => {
 
   const { url } = await server.listen();
   console.log(`🚀  Server ready at ${url}`);
-  console.log('hello hot reload ?');
 };
 
 void start();
