@@ -4,7 +4,7 @@ const ButtonSignUp = () => {
   const navigate = useNavigate();
 
   const redirectToSignUpSignUpPage = () => {
-    navigate('/signup?show=signup'); // Utilisez un paramètre d'URL pour indiquer l'affichage de la page d'inscription
+    navigate('/signup?show=signup'); 
   };
 
   return (

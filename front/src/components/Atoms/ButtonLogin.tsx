@@ -4,7 +4,7 @@
   const navigate = useNavigate();
 
   const redirectToSignUpLoginPage = () => {
-    navigate('/signup?show=login'); // Utilisez un paramètre d'URL pour indiquer l'affichage de la page de login
+    navigate('/signup?show=login'); 
   };
   return (
     <>
