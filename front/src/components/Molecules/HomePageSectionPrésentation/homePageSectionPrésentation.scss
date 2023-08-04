@@ -1,3 +1,31 @@
+
 .container {
-    background-color: mediumslateblue;
+    color: $secondaryColor;
+}
+.title{
+    color: #FFF;
+    text-align: center;
+    font-family: Karma;
+    font-size: 77px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.hashtag{
+    color:$tertiaryColor;
+}
+.highlighted{
+    color:$tertiaryColor;
+}
+.container-text{
+    text-align: center;
+    font-family: JejuMyeongjo;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.logoImage{
+    display: flex;
+    align-items: start
 }
