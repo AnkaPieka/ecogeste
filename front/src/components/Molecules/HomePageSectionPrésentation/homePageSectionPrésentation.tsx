@@ -1,10 +1,10 @@
 import React from "react";
-import logoFeuille from "../../../assets/logoFeuille.svg"
+// import logoFeuille from "../../../assets/logoFeuille.svg"
 function HomePageSectionPresentation(){
 
     return(
         <div className="container">
-    <img src= {logoFeuille} alt="logoFeuille" className="logoImage" />
+    {/* <img src= {logoFeuille} alt="logoFeuille" className="logoImage" /> */}
     <h2 className="title">Are you <span className="highlighted">ready</span> to faces the challenges?</h2>
     <div className="container-text">
     <p className="description">Join our <span className="highlighted">echo-challenge app</span> and participate in group challenges tant promotes

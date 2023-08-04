@@ -1,16 +1,17 @@
 
 .container {
     color: $secondaryColor;
+    .title{
+        color: #FFF;
+        text-align: center;
+        font-family: Karma;
+        font-size: 77px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
 }
-.title{
-    color: #FFF;
-    text-align: center;
-    font-family: Karma;
-    font-size: 77px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
+
 .hashtag{
     color:$tertiaryColor;
 }
