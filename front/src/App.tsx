@@ -1,16 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-// import LoginPage from './Pages/LoginPage';
+import LoginSignUp from './Pages/LoginSignUp';
 import HomePage from './Pages/HomePage';
-import NavBar from './components/Organisms/NavBar';
+import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/login" element={<LoginPage />} /> */}
+        <Route path="/login" element={<LoginSignUp />} />
+        <Route path="/signup" element={<LoginSignUp />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>
     </div>
   );

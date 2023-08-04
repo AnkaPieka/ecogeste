@@ -1,0 +1,40 @@
+@import "../../../styles/Variables.scss";
+
+.footer {
+    background-color: $secondaryColor;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+
+    .faq{
+        width: 20vw;
+        border-right: 6px double $tertiaryColor;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+
+    }
+
+    .logo{
+        width: 650px;
+        height: 350px;
+        position: relative;
+        top: -20px;
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .legality{
+        width: 20vw;
+        border-left: 6px double $tertiaryColor;
+        height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+}
