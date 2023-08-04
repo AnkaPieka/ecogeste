@@ -3,12 +3,12 @@
 #opinionCardContainer {
   color: $secondaryColor;
   border-radius: 4px;
-  background: linear-gradient(#452e63, $secondaryColor);
+  background: linear-gradient($primaryColor, $secondaryColor);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 220px;
-  width: 345px;
+  min-height: 220px;
+  max-width: 345px;
   padding: 4px;
 
   .opinionCardBody {
@@ -36,7 +36,7 @@
       display: flex;
       justify-content: start;
       align-items: start;
-      min-height: 30%;
+      min-height: 100%;
     }
   }
 }

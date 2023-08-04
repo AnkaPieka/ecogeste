@@ -20,6 +20,7 @@ const OpinionCard = ({
           <ProfilePicture imageSrc={profilePictureSrc} size="sm" />
           <span>{title}</span>
         </div>
+        
         <div className="description">
           <p>{children}</p>
         </div>
