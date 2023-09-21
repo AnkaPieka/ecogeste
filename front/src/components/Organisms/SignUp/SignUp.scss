@@ -1,0 +1,107 @@
+
+.boxSignUp{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    font-family: 'Karma', sans-serif;
+
+
+    .top{
+
+        height: 40px;
+
+        img {
+            width: 90px;
+            position: relative;
+            top: -120px;
+            right: -220px;
+        }
+        
+        
+    
+        h1{
+            text-align: center;
+            font-family: Karma;
+            font-size: 43px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            color: #148C66;
+        
+        }
+      
+
+    }
+
+   
+    .GlobalSignUp{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .boxInput{
+                display: flex;
+                flex-direction: column;
+                margin: 20px;
+
+                label{
+                    font-size: 15px;
+                    margin-bottom: 10px;
+                    font-family: Karma;
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    color: #148C66;
+                }
+
+                input{
+                    width: 300px;
+                    height: 28px;
+                    border: 1px solid #148C66;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+
+                input:focus{
+                    outline: none;
+                }
+
+                
+            }
+
+            button {
+                width: 120px;
+                height: 40px;
+                border: none;
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #22C79A;
+                background: linear-gradient(180deg, #148C66 0%, #02E89B 100%);
+                color: #fff;
+                font-size: 1rem;
+                margin-top: 20px;
+                cursor: pointer;
+
+                
+            }
+
+        }
+    }
+
+}
