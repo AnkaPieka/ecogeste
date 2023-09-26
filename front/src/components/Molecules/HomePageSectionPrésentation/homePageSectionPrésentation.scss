@@ -5,20 +5,28 @@
         color: #FFF;
         text-align: center;
         font-family: Karma;
-        font-size: 77px;
+        font-size: 55px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
     }
+    .title-content{
+        display: flex;
+        align-items: center;
+    }
+    
 }
 
 .hashtag{
     color:$tertiaryColor;
+    display: flex;
+    justify-content: center;
 }
 .highlighted{
     color:$tertiaryColor;
 }
 .container-text{
+    display: flex;
     text-align: center;
     font-family: JejuMyeongjo;
     font-size: 21px;
@@ -27,6 +35,8 @@
     line-height: normal;
 }
 .logoImage{
-    display: flex;
-    align-items: start
+    height: 5em;
+}
+.logoImageDown{
+    height: 5em;
 }
