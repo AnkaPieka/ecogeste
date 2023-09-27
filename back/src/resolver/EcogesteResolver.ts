@@ -9,12 +9,12 @@ class EcogesteResolver {
     @Arg('title') title: string,
     @Arg('description') description: string,
     @Arg('level') level: number,
-    @Arg('icon') icon: string,
+    @Arg('proof') proof: boolean,
     @Arg('category') category: string
   ): Promise<Ecogeste> {
     const createEcogeste = await dataSource
       .getRepository(Ecogeste)
-      .save({ title, description, level, icon, category });
+      .save({ title, description, level, proof, category });
 
     return createEcogeste;
   }
@@ -24,13 +24,13 @@ class EcogesteResolver {
     @Arg('title') title: string,
     @Arg('description') description: string,
     @Arg('level') level: number,
-    @Arg('icon') icon: string,
+    @Arg('proof') proof: boolean,
     @Arg('category') category: string
   ): Promise<Ecogeste[]> {
     try {
       const getOneEcogeste = await dataSource
         .getRepository(Ecogeste)
-        .find({ where: { title, description, level, icon, category } });
+        .find({ where: { title, description, level, proof, category } });
       return getOneEcogeste;
     } catch (err) {
       console.log(err);
@@ -53,7 +53,7 @@ class EcogesteResolver {
     @Arg('title') title: string,
     @Arg('description') description: string,
     @Arg('level') level: number,
-    @Arg('icon') icon: string,
+    @Arg('proof') proof: boolean,
     @Arg('category') category: string
   ): Promise<Ecogeste> {
     const ecogeste = await dataSource
@@ -64,7 +64,6 @@ class EcogesteResolver {
       throw new Error(`The ecogeste with id: ${id} does not exist!`);
     }
 
-    // Effectuez les mises à jour sur l'utilisateur si les champs sont fournis
     if (title !== '') {
       ecogeste.title = title;
     }
@@ -74,8 +73,8 @@ class EcogesteResolver {
     if (typeof level === 'number') {
       ecogeste.level = level;
     }
-    if (icon !== '') {
-      ecogeste.icon = icon;
+    if (ecogeste.proof !== proof) {
+      ecogeste.proof = proof;
     }
     if (category !== '') {
       ecogeste.category = category;
