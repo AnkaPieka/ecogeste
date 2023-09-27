@@ -8,12 +8,12 @@ class UserResolver {
   async addUser(
     @Arg('name') name: string,
     @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('password') password: string,
+    @Arg('avatar') avatar: string
   ): Promise<User> {
-
       const createUser = await dataSource
         .getRepository(User)
-        .save({ name, email, password });
+        .save({ name, email, password, avatar});
       return createUser;
   }
 
