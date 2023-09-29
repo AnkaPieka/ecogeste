@@ -19,22 +19,52 @@ class EcogesteResolver {
     return createEcogeste;
   }
 
+  // @Query(() => [Ecogeste])
+  // async getAll(
+  //   @Arg('title') title: string,
+  //   @Arg('description') description: string,
+  //   @Arg('level') level: number,
+  //   @Arg('proof') proof: boolean,
+  //   @Arg('category') category: string
+  // ): Promise<Ecogeste[]> {
+  //   try {
+  //     const getEcogeste = await dataSource
+  //       .getRepository(Ecogeste)
+  //       .find({ where: { title, description, level, proof, category } });
+  //     return getEcogeste;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return [];
+  //   }
+  // }
+
   @Query(() => [Ecogeste])
-  async getAll(
-    @Arg('title') title: string,
-    @Arg('description') description: string,
-    @Arg('level') level: number,
-    @Arg('proof') proof: boolean,
-    @Arg('category') category: string
-  ): Promise<Ecogeste[]> {
+  async getAll(): Promise<Ecogeste[]> {
     try {
-      const getOneEcogeste = await dataSource
-        .getRepository(Ecogeste)
-        .find({ where: { title, description, level, proof, category } });
-      return getOneEcogeste;
+      const getEcogeste = await dataSource.getRepository(Ecogeste).find();
+      return getEcogeste;
     } catch (err) {
       console.log(err);
       return [];
+    }
+  }
+
+  @Query(() => Ecogeste, { nullable: true })
+  async getEcogesteById(@Arg('id') id: number): Promise<Ecogeste | null> {
+    try {
+      const ecogeste = await dataSource
+        .getRepository(Ecogeste)
+        .findOne({ where: { id } });
+
+      if (ecogeste === null || ecogeste === undefined) {
+        console.log('No ecogeste with this id was found');
+        return null;
+      }
+
+      return ecogeste;
+    } catch (err) {
+      console.log(err);
+      return null;
     }
   }
 
