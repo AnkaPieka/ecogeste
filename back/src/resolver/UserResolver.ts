@@ -19,19 +19,33 @@ class UserResolver {
 
   @Query(() => [User])
   async getAll(
-    @Arg('name') name: string,
-    @Arg('email') email: string,
   ) : Promise<User[]> {
     try {
-      const getOneUser = await dataSource
+      const getUsers = await dataSource
         .getRepository(User)
-        .find({where: {name, email}});
-      return getOneUser;
+        .find();
+      return getUsers;
     } catch (err) {
       console.log(err);
       return [];
     }
   }
+
+  // @Query(() => [User])
+  // async getAll(
+  //   @Arg('name') name: string,
+  //   @Arg('email') email: string,
+  // ) : Promise<User[]> {
+  //   try {
+  //     const getOneUser = await dataSource
+  //       .getRepository(User)
+  //       .find({where: {name, email}});
+  //     return getOneUser;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return [];
+  //   }
+  // }
 
   @Mutation(() => String)
   async deleteUser(
@@ -72,6 +86,5 @@ class UserResolver {
   return updatedUser;
 }
 }
-
 
 export default UserResolver;
