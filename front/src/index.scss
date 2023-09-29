@@ -1,0 +1,26 @@
+@import "../src/styles/Atoms/ButtonLogin.scss";
+@import "../src/styles/Atoms/ButtonSignUp.scss";
+@import "../src/styles/Variables.scss";
+@import "../src/styles/Organisms/NavBar.scss";
+@import"../src/components/Molecules/HomePageSectionPrésentation/homePageSectionPrésentation.scss";
+@import "../src/components/Organisms/Footer/Footer.scss";
+@import "../src/components/Molecules/SocialNetwork/SocialNetworkSection.scss";
+@import "../src/components/Molecules/Legality/Legacity.scss";
+@import "../src/components/Molecules/Faq/Faq.scss";
+
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $primaryColor ;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -5,13 +5,13 @@ import { buildSchema } from 'type-graphql';
 import { ApolloServer } from 'apollo-server';
 import UserResolver from './resolver/UserResolver';
 import EcogesteResolver from './resolver/EcogesteResolver';
-// import WilderResolver from './resolver/WilderResolver';
+import LoginResolver from './resolver/LoginResolver';
 
-const start = async (): Promise<void> => {
+export const start = async (): Promise<void> => {
   await dataSource.initialize();
 
   const typeGraphQLgeneratedSchema = await buildSchema({
-    resolvers: [UserResolver, EcogesteResolver],
+    resolvers: [UserResolver, EcogesteResolver, LoginResolver],
     authChecker: ({ context }) => {
       console.log('context from authchecker', context);
       if (context.email !== undefined) {
@@ -41,7 +41,6 @@ const start = async (): Promise<void> => {
 
   const { url } = await server.listen();
   console.log(`🚀  Server ready at ${url}`);
-  console.log('hello hot reload ?');
 };
 
 void start();

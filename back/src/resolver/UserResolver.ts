@@ -8,29 +8,41 @@ class UserResolver {
   async addUser(
     @Arg('name') name: string,
     @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('password') password: string,
+    @Arg('avatar') avatar: string
   ): Promise<User> {
     const createUser = await dataSource
       .getRepository(User)
-      .save({ name, email, password });
+      .save({ name, email, password, avatar });
     return createUser;
   }
 
   @Query(() => [User])
-  async getAll(
-    @Arg('name') name: string,
-    @Arg('email') email: string
-  ): Promise<User[]> {
+  async getAll(): Promise<User[]> {
     try {
-      const getOneUser = await dataSource
-        .getRepository(User)
-        .find({ where: { name, email } });
-      return getOneUser;
+      const getUsers = await dataSource.getRepository(User).find();
+      return getUsers;
     } catch (err) {
       console.log(err);
       return [];
     }
   }
+
+  // @Query(() => [User])
+  // async getAll(
+  //   @Arg('name') name: string,
+  //   @Arg('email') email: string,
+  // ) : Promise<User[]> {
+  //   try {
+  //     const getOneUser = await dataSource
+  //       .getRepository(User)
+  //       .find({where: {name, email}});
+  //     return getOneUser;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return [];
+  //   }
+  // }
 
   @Mutation(() => String)
   async deleteUser(@Arg('id') id: number): Promise<String> {
