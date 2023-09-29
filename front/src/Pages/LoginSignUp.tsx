@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import SignUp from '../components/Organisms/SignUp/SignUp';
 
 const LoginSignUp = () => {
   const location = useLocation();
@@ -9,7 +10,7 @@ const LoginSignUp = () => {
       {showLogin ? (
         <div className="login-container"> COUCOU </div>
       ) : (
-        <div className="signup-container"> AUREVOIR </div>
+        <SignUp />
       )}
     </div>
   )

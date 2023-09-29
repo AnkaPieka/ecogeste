@@ -11,7 +11,9 @@ const fetch = require("cross-fetch");
 
 const client = new ApolloClient({
   link: new HttpLink({
+
     uri: 'http://localhost:4000/',
+
     fetch,
   }),
   cache: new InMemoryCache(),
@@ -21,6 +23,7 @@ const client = new ApolloClient({
 const CREATE_USER = gql`
   mutation Mutation($password: String!, $email: String!, $name: String!) {
     createUser(password: $password, email: $email, name: $name) {
+
       email,
       name,
       password
@@ -39,5 +42,6 @@ describe('User resolver', () => {
       name: 'testName',
       email: 'test@test.com',
     });
+
   });
 });
