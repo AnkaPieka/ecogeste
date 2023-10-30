@@ -42,6 +42,5 @@ describe('User resolver', () => {
       name: 'testName',
       email: 'test@test.com',
     });
-
   });
 });
