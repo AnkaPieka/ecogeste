@@ -57,7 +57,7 @@ class UserResolver {
       
       const userFromDB = await dataSource.manager.findOne(User, { where: { email } });
 
-      if (!userFromDB) {
+      if (userFromDB === null || userFromDB === undefined) {
         throw new Error('User not found');
       }
 
