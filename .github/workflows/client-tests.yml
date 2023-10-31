@@ -1,11 +1,5 @@
 name: client-tests-workflow
-on:
-  push:
-    branches:
-      - US-16_CI
-  pull_request:
-    branches:
-      - US-16_CI
+on: [push, pull_request]
 
 jobs:
   test-client:
