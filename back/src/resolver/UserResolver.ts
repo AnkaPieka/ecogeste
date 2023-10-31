@@ -1,8 +1,8 @@
 import { Arg, Mutation, Resolver, Query } from 'type-graphql';
 import { User } from '../entity/User';
 import dataSource from '../utils';
-import * as argon2 from "argon2";
-import jwt from "jsonwebtoken";
+import * as argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 
 @Resolver()
 class UserResolver {
@@ -17,7 +17,6 @@ class UserResolver {
       .getRepository(User)
       .save({ name, email, password, avatar });
     return createUser;
-
   }
 
   @Query(() => [User])
@@ -30,7 +29,6 @@ class UserResolver {
       return [];
     }
   }
-
 
   // @Query(() => [User])
   // async getAll(
@@ -54,23 +52,25 @@ class UserResolver {
     @Arg('password') password: string
   ): Promise<string> {
     try {
-      
-      const userFromDB = await dataSource.manager.findOne(User, { where: { email } });
+      const userFromDB = await dataSource.manager.findOne(User, {
+        where: { email },
+      });
 
       if (userFromDB === null || userFromDB === undefined) {
         throw new Error('User not found');
       }
 
-     
-      const isPasswordValid = await argon2.verify(userFromDB.password, password);
+      const isPasswordValid = await argon2.verify(
+        userFromDB.password,
+        password
+      );
 
       if (!isPasswordValid) {
         throw new Error('Invalid password');
       }
 
-     
       const token = jwt.sign({ userId: userFromDB.id }, 'votre_clé_secrète', {
-        expiresIn: '1h', 
+        expiresIn: '1h',
       });
 
       return token;
