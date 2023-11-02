@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import feuilledeco from "../../../assets/deuxfeuilles 36.png";
 import { useNavigate } from "react-router-dom";
@@ -14,16 +14,38 @@ const ADD_USER = gql`
   }
 `;
 
+const CHECK_USER = gql`
+  query checkUser($email: String!) {
+    getUserByEmail(email: $email) {
+      id
+    }
+  }
+`;
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [addUser] = useMutation(ADD_USER);
+  const { data: userData, loading } = useQuery(CHECK_USER);
 
-  const handleSubmit = async (values: { name: string; email: string; password: string; confirmPassword: string }) => {
+  const handleSubmit = async (values: { name: string; email: string; password: string; confirmPassword: string}) => {
     try {
+      console.log("Données du formulaire :", values);
+      // Vérifier si un utilisateur avec le même e-mail existe déjà
+      if (!loading) {
+        const existingUser = userData?.getUserByEmail;
+
+        if (existingUser) {
+          console.log("Un utilisateur avec le même e-mail existe déjà.");
+          // Afficher un message d'erreur ou prendre une autre action
+          return;
+        }
+      }
+
+      // Créer le nouvel utilisateur si l'utilisateur n'existe pas
       const response = await addUser({
         variables: { ...values },
       });
-      console.log("data reçu :", response.data.addUser);
+      console.log("Données reçues :", response.data.addUser);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
@@ -36,9 +58,6 @@ const SignUp = () => {
     }
     return undefined;
   };
-  
-  
-  
 
   return (
     <div className="boxSignUp">
