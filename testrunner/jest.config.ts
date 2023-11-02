@@ -12,6 +12,9 @@ export default {
     // eslint-disable-next-line no-useless-escape
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
+  transformIgnorePatterns: [
+    "node_modules/(?!variables/.*)"
+  ],
   globals: {
     "ts-jest": {
       useESM: true, // Activer la prise en charge d'ESM
