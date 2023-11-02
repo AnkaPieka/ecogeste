@@ -53,13 +53,29 @@
 //     });
 //   });
 // });
-import { ApolloClient, InMemoryCache, gql} from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { SchemaLink } from '@apollo/client/link/schema';
-import { makeExecutableSchema} from '@graphql-tools/schema';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 import { addMocksToSchema } from '@graphql-tools/mock';
-// import { addMockFunctionsToSchema} from 'graphql-tools';
-// Importez votre schéma GraphQL principal
-import { User } from '../../back/src/entity/User'; 
+
+// Schéma complet avec les types nécessaires
+const typeDefs = gql`
+type Query {
+  _empty: String
+}
+  type User {
+    id: ID!
+    email: String!
+    name: String!
+    password: String!
+    avatar: String!
+  }
+
+  type Mutation {
+    addUser(password: String!, email: String!, name: String!, avatar: String!): User!
+  }
+`;
+
 const CREATE_USER = gql`
   mutation Mutation(
     $password: String!
@@ -76,45 +92,50 @@ const CREATE_USER = gql`
   }
 `;
 
-const schemaString = CREATE_USER;
-const schema = makeExecutableSchema({ typeDefs: schemaString })
-const schemaWithMocks = addMocksToSchema({ schema })
-// Appliquez des fonctions mockées au schéma cloné avec AddMockFunctionsToSchema
-addMocksToSchema({
-  schema: schemaWithMocks,
-  mocks: {
-    Mutation: () => ({
-      addUser: () => ({
-        // Supposons que l'objet renvoyé contient un id, un name, et peut-être d'autres champs
-        id: "mockedId123",
-        name: "test",
-        email: 'test@test.com',
-        password: 'test',
-        avatar: 'avatar',
-        // Ajoutez d'autres champs mockés au besoin
-      }),
-    }),
-  },
-});
+// Création du schéma exécutable
+const schema = makeExecutableSchema({ typeDefs });
 
-// Créer un nouveau client ApolloClient uniquement pour les tests et donnez lui le schema cloné 
+// Ajout des mocks au schéma
+const mocks = {
+  Mutation: () => ({
+    addUser: () => ({
+      id: "mockedId123",
+      name: "test",
+      email: 'test@test.com',
+      password: 'test',
+      avatar: 'avatar',
+    }),
+  }),
+};
+
+const schemaWithMocks = addMocksToSchema({ schema, mocks });
+
+// Création du client Apollo pour les tests
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new SchemaLink({ schema: schemaWithMocks }),
 });
-describe('Category mutation', () => {
-  it('should create a new category', async () => {
-    const categoryName = "Test Category";
+
+// Tests
+describe('User mutation', () => {
+  it('should create a new user', async () => {
+    const userData = {
+      password: "test",
+      email: 'test@test.com',
+      name: 'test',
+      avatar: 'avatar',
+      __typename: "User"
+    };
 
     const response = await client.mutate({
-      mutation: schemaString,
-      variables: { name: categoryName },
+      mutation: CREATE_USER,
+      variables: userData,
     });
 
-    expect(response.data.createCategory).toEqual({
-      id: "mockedId123",
-      name: categoryName,
+    expect(response.data.addUser).toEqual({
+      ...userData
     });
   });
 });
+
 export {};
