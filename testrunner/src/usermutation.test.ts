@@ -82,5 +82,3 @@ describe('User mutation', () => {
     });
   });
 });
-
-export {};
