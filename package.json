@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "@apollo/client": "^3.7.17",
+    "apollo-link-schema": "^1.2.5",
     "cross-fetch": "^4.0.0",
+    "graph-tools": "^0.1.2",
     "jest": "^29.6.2",
     "ts-node": "^10.9.1"
   },
