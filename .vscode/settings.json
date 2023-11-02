@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["front", "back"]
+  "eslint.workingDirectories": ["front", "back"],
+  "jest.autoRun": {}
 }
