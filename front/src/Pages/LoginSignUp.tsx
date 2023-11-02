@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import SignUp from '../components/Organisms/SignUp/SignUp';
+import Login from '../components/Organisms/Login/Login';
 
 const LoginSignUp = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ const LoginSignUp = () => {
   return (
     <div className="signup-page">
       {showLogin ? (
-        <div className="login-container"> COUCOU </div>
+        <Login />
       ) : (
         <SignUp />
       )}
