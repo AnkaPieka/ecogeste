@@ -1,9 +1,4 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
@@ -27,8 +22,7 @@
     "baseUrl": ".",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "rootDir": "src"
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"],
   "include": [
