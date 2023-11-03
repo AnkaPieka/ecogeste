@@ -1,4 +1,4 @@
-import { Arg, Mutation, Resolver, Query } from 'type-graphql';
+import { Arg, Mutation, Resolver, Query, Ctx } from 'type-graphql';
 import { User } from '../entity/User';
 import dataSource from '../utils';
 import * as argon2 from 'argon2';
@@ -11,12 +11,25 @@ class UserResolver {
     @Arg('name') name: string,
     @Arg('email') email: string,
     @Arg('password') password: string,
-    @Arg('avatar') avatar: string
+    @Arg('avatar') avatar: string,
+    @Ctx() context: any
   ): Promise<User> {
-    const createUser = await dataSource
-      .getRepository(User)
-      .save({ name, email, password, avatar });
-    return createUser;
+    const { dataSource } = context;
+
+    try {
+      const newUser = new User();
+      newUser.name = name;
+      newUser.password = password;
+      newUser.email = email;
+      newUser.avatar = avatar;
+
+      const createUser = await dataSource.getRepository(User).save(newUser);
+
+      return createUser;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   }
 
   @Query(() => [User])
