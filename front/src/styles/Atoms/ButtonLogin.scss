@@ -1,0 +1,24 @@
+@import "../Variables.scss";
+
+.btnlogin{
+    border-radius: 5px;
+    background: $secondaryColor ;
+    border: 1px solid $secondaryColor;
+    width: 124px;
+    height: 38px;
+    color: #22C79A;
+    font-family: $font-family-primary;
+    font-size: $font-size-medium;
+    text-transform : uppercase;
+    margin:20px; 
+
+    &:hover {
+        box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #bfbfbf;
+        transform: translateY(-0.1em);
+      }
+      
+      &:active {
+        box-shadow: inset 0px 0.1em 0.6em #bfbfbf;
+        transform: translateY(0em);
+      }
+}

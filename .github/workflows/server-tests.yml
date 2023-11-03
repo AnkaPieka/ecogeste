@@ -1,0 +1,11 @@
+name: server-tests-workflow
+on: pull_request
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Goto back and run tests
+        run: cd back && npm i && npm test ./tests/userresolver.test.ts

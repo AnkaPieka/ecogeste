@@ -1,0 +1,42 @@
+@import '../../../styles/Variables.scss';
+
+#opinionCardContainer {
+  color: $secondaryColor;
+  border-radius: 4px;
+  background: linear-gradient($primaryColor, $secondaryColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  max-width: 345px;
+  padding: 4px;
+
+  .opinionCardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 4px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: $lighterGreen;
+    padding: 16px;
+
+    .profilePicAndTitle {
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 16px;
+        text-transform: uppercase;
+      }
+    }
+
+    .description {
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      min-height: 100%;
+    }
+  }
+}

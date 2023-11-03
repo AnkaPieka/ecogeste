@@ -1,0 +1,12 @@
+@import "../../../styles/Variables.scss";
+
+.gobalLegacity{
+    ul{
+        line-height: 1.5;
+    }
+
+    p{
+        font-size: $font-size-xxsmall;
+        color: $tertiaryColor;
+    }
+}
