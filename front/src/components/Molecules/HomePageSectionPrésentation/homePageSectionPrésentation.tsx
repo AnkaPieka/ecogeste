@@ -8,7 +8,7 @@ function HomePageSectionPresentation() {
       <div className="title-content">
         <img src={logoFeuilleTitle} alt="logoFeuille" className="logoImage" />
         <h2 className="title">
-          Are you <span className="highlighted">ready</span> to face the
+          Are you <span className="highlighted">ready</span> to faces the
           challenges?
         </h2>
       </div>
@@ -32,6 +32,7 @@ function HomePageSectionPresentation() {
         #Ecochallenge #SupportingTheEnvironnement
       </span>
     </div>
+  );
   );
 }
 export default HomePageSectionPresentation;
