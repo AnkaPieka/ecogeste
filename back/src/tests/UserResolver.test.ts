@@ -4,6 +4,7 @@ const resolver = new UserResolver();
 
 const { addUser } = resolver;
 
+
 const mockDb = {
   getRepository: jest.fn(),
 };
