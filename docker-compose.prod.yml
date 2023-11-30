@@ -36,8 +36,9 @@ services:
       - $PWD/site:/srv
       - caddy_data:/data
       - caddy_config:/config
-    depends_on: -back
-      -front
+    depends_on:
+      - back
+      - front
 
 volumes:
   caddy_data:
