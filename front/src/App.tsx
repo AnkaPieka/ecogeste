@@ -5,6 +5,7 @@ import './App.css';
 import HomePage from './Pages/HomePage';
 import Dashboard from './Pages/Dashboard';
 import LoginSignUp from './Pages/LoginSignUp';
+import ChallengePage from './Pages/ChallengePage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/signup" element={<LoginSignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/challengeDashboard" element={<ChallengePage/>} />
       </Routes>
     </div>
   );

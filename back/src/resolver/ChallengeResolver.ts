@@ -5,7 +5,7 @@ import dataSource from '../utils';
 @Resolver()
 class ChallengeResolver {
     @Mutation(() => Challenge)
-      async addChallenge( 
+    async addChallenge( 
         @Arg('description') description: string,
         @Arg('title') title: string,
         @Arg('progress') progress: number,
@@ -14,26 +14,38 @@ class ChallengeResolver {
         @Arg('creator') creator: number,
         @Arg('duration') duration: string,
         ): Promise<Challenge> {     
-             const createChallenge = await dataSource
+            const createChallenge = await dataSource
                 .getRepository(Challenge)
                 .save({ description, title, progress, photo, likes, creator, duration });
-             return createChallenge;            
+            return createChallenge;            
         }
 
+    // @Query(() => [Challenge])
+    // async getAllChallenges(
+    //     @Arg('description') description: string,
+    //     @Arg('title') title: string,
+    //     @Arg('progress') progress: number,
+    //     @Arg('photo') photo: string,
+    //     @Arg('likes') likes: number,
+    //     @Arg('creator') creator: number,
+    //     @Arg('duration') duration: string,
+    // ) : Promise<Challenge[]> {
+    //     try {
+    //         const getOneChallenge = await dataSource
+    //             .getRepository(Challenge)
+    //             .find({where: {description, title, progress, photo, likes, creator, duration}});
+    //         return getOneChallenge;
+    //     } catch (err) {
+    //         console.log(err);
+    //         return [];
+    //     }
+    // }
     @Query(() => [Challenge])
-    async getAllChallenges(
-        @Arg('description') description: string,
-        @Arg('title') title: string,
-        @Arg('progress') progress: number,
-        @Arg('photo') photo: string,
-        @Arg('likes') likes: number,
-        @Arg('creator') creator: number,
-        @Arg('duration') duration: string,
-    ) : Promise<Challenge[]> {
+    async getAllChallenges() : Promise<Challenge[]> {
         try {
             const getOneChallenge = await dataSource
                 .getRepository(Challenge)
-                .find({where: {description, title, progress, photo, likes, creator, duration}});
+                .find();
             return getOneChallenge;
         } catch (err) {
             console.log(err);
