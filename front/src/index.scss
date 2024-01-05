@@ -1,14 +1,13 @@
-@import "../src/styles/Atoms/ButtonLogin.scss";
-@import "../src/styles/Atoms/ButtonSignUp.scss";
-@import "../src/styles/Variables.scss";
-@import "../src/styles/Organisms/NavBar.scss";
-@import"../src/components/Molecules/HomePageSectionPrésentation/homePageSectionPrésentation.scss";
-@import "../src/components/Organisms/Footer/Footer.scss";
-@import "../src/components/Molecules/SocialNetwork/SocialNetworkSection.scss";
-@import "../src/components/Molecules/Legality/Legacity.scss";
-@import "../src/components/Molecules/Faq/Faq.scss";
-
-
+@import '../src/styles/Atoms/ButtonLogin.scss';
+@import '../src/styles/Atoms/ButtonSignUp.scss';
+@import '../src/styles/Variables.scss';
+@import '../src/styles/Organisms/NavBar.scss';
+@import '../src/components/Molecules/HomePageSectionPrésentation/homePageSectionPrésentation.scss';
+@import '../src/components/Organisms/Footer/Footer.scss';
+@import '../src/components/Molecules/SocialNetwork/SocialNetworkSection.scss';
+@import '../src/components/Molecules/Legality/Legacity.scss';
+@import '../src/components/Molecules/Faq/Faq.scss';
+@import '../src/components/Templates/OpinionsSection/OpinionsSection.scss';
 
 body {
   margin: 0;
@@ -17,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $primaryColor ;
+  background-color: $primaryColor;
 }
 
 code {

@@ -6,15 +6,18 @@ import { ApolloServer } from 'apollo-server';
 import UserResolver from './resolver/UserResolver';
 import EcogesteResolver from './resolver/EcogesteResolver';
 import LoginResolver from './resolver/LoginResolver';
-import ChallengeResolver from './resolver/ChallengeResoler';
-
-
+import ChallengeResolver from './resolver/ChallengeResolver';
 
 export const start = async (): Promise<void> => {
   await dataSource.initialize();
 
   const typeGraphQLgeneratedSchema = await buildSchema({
-    resolvers: [UserResolver, EcogesteResolver, LoginResolver],
+    resolvers: [
+      UserResolver,
+      EcogesteResolver,
+      LoginResolver,
+      ChallengeResolver,
+    ],
 
     authChecker: ({ context }) => {
       console.log('context from authchecker', context);

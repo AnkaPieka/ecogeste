@@ -1,15 +1,14 @@
 import HomePageSectionPresentation from '../components/Molecules/HomePageSectionPrésentation/homePageSectionPrésentation';
-
 import NavBar from '../components/Organisms/NavBar';
 import Footer from '../components/Organisms/Footer/Footer';
-import OpinionsCarousel from '../components/Organisms/OpinionsCarousel/OpinionsCarousel';
+import OpinionsSection from '../components/Templates/OpinionsSection/OpinionsSection';
 
 const HomePage = () => {
   return (
     <div>
       <NavBar />
-      <HomePageSectionPresentation></HomePageSectionPresentation>
-      {/* <OpinionsCarousel></OpinionsCarousel> */}
+      <HomePageSectionPresentation />
+      <OpinionsSection />
       <Footer />
     </div>
   );
