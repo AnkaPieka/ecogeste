@@ -8,7 +8,7 @@ function HomePageSectionPresentation() {
       <div className="title-content">
         <img src={logoFeuilleTitle} alt="logoFeuille" className="logoImage" />
         <h2 className="title">
-          Are you <span className="highlighted">ready</span> to faces the
+          Are you <span className="highlighted">ready</span> to face the
           challenges?
         </h2>
       </div>
