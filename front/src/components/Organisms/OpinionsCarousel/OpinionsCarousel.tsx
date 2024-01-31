@@ -12,6 +12,7 @@ const OpinionsCarousel = ({}: OpinionsCarouselProps) => {
     { pic: '', name: 'Percy', opinion: 'lorem ipsum dolor sit amet' },
     { pic: '', name: 'Shakira', opinion: 'lorem ipsum dolor sit amet' },
   ];
+  
   return (
     <div id="opinionCarousel">
       <ArrowButton

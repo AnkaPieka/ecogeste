@@ -1,2 +1,0 @@
-File for GItHub to detect the folder
-Delete when folder gets its first File
