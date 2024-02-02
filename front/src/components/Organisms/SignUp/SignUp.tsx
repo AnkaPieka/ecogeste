@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import feuilledeco from "../../../assets/deuxfeuilles 36.png";
 import { useNavigate } from "react-router-dom";
 
+import "./SignUp.scss"
+
 const ADD_USER = gql`
   mutation addUser($name: String!, $email: String!, $password: String!) {
     addUser(name: $name, email: $email, password: $password) {
