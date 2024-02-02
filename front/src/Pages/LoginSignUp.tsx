@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom'
 import SignUp from '../components/Organisms/SignUp/SignUp';
 import Login from '../components/Organisms/Login/Login';
 
+import "./LoginSignUp.scss"
+
 const LoginSignUp = () => {
   const location = useLocation();
   const showLogin = new URLSearchParams(location.search).get('show') === 'login';

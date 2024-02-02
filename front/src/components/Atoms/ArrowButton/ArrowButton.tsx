@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowBack, ArrowForward } from '@mui/icons-material';
+// import { ArrowBack, ArrowForward } from '@mui/icons-material';
 import './ArrowButton.scss';
 
 type ArrowButtonProps = {
@@ -18,11 +18,11 @@ const ArrowButton = ({
   return (
     <>
       <button id="arrowButton" className={size}>
-        {direction === 'back' ? (
+        {/* {direction === 'back' ? (
           <ArrowBack onClick={onClick} htmlColor={arrowColor} />
         ) : (
           <ArrowForward onClick={onClick} htmlColor={arrowColor} />
-        )}
+        )} */}
       </button>
     </>
   );
