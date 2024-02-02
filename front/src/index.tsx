@@ -1,28 +1,28 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import "./index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import './index.scss';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/",
+  uri: 'http://localhost:4000/',
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -33,7 +33,7 @@ const client = new ApolloClient({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 root.render(
   <BrowserRouter>

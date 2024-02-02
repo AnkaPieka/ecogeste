@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+// import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ObjectType, Field } from 'type-graphql';
 import { User } from './User';
 
 @ObjectType()
-@Entity()
+// @Entity()
 export class Avatar {
   @Field()
-  @PrimaryGeneratedColumn()
+  // @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
-  @Column()
+  // @Column()
   file: string;
 
   @Field(() => [User])
-  @OneToMany(() => User, (user) => user.avatar)
+  // @OneToMany(() => User, (user) => user.avatar)
   users: User[];
 }

@@ -1,0 +1,29 @@
+#profilePicture {
+  border-radius: 50%;
+  background: linear-gradient(#02e89b, #452e63);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .imageTag {
+    position: relative;
+    border-radius: 50%;
+    height: 90%;
+    width: 90%;
+  }
+
+  &.sm {
+    height: 60px;
+    width: 60px;
+  }
+
+  &.md {
+    height: 90px;
+    width: 90px;
+  }
+
+  &.lg {
+    height: 110px;
+    width: 110px;
+  }
+}

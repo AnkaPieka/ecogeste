@@ -3,14 +3,14 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  ManyToOne,
+  // ManyToOne,
   JoinTable,
   ManyToMany,
 } from 'typeorm';
 import { ObjectType, Field } from 'type-graphql';
 import { Report } from './Report';
 import { Comment } from './Comment';
-import { Avatar } from './Avatar';
+// import { Avatar } from './Avatar';
 import { Challenge } from './Challenge';
 import { Role } from './Role';
 
@@ -34,6 +34,10 @@ export class User {
   @Column()
   password: string;
 
+  @Field()
+  @Column()
+  avatar: string;
+
   @Field(() => Report)
   @OneToMany(() => Report, (report) => report.user, { onDelete: 'CASCADE' })
   reports: Report[];
@@ -48,9 +52,9 @@ export class User {
   })
   challenges: Challenge[];
 
-  @Field(() => Avatar)
-  @ManyToOne(() => Avatar, (avatar) => avatar.users, { onDelete: 'CASCADE' })
-  avatar: Avatar;
+  // @Field(() => Avatar)
+  // @ManyToOne(() => Avatar, (avatar) => avatar.users, { onDelete: 'CASCADE' })
+  // avatar: Avatar;
 
   @ManyToMany(() => Role)
   @JoinTable({

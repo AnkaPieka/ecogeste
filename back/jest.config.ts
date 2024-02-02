@@ -1,3 +1,19 @@
+// export default {
+//     clearMocks: true,
+//     coverageDirectory: "coverage",
+//     testEnvironment: "node",
+//     preset: 'ts-jest',
+//     testMatch: [
+//         '/tests//.ts?(x)',
+//         '**/?(.)+(spec|test).ts?(x)',
+//         '<rootDir>/src/**/*.test.ts',
+//       ],
+//     transform: {
+//       // eslint-disable-next-line no-useless-escape
+//       "^.+\.(ts|tsx)$": "ts-jest",
+//     },
+//   };
+
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
@@ -8,4 +24,3 @@ module.exports = {
       // ... d'autres variables si nécessaires
     },
   };
-  

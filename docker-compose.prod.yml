@@ -1,0 +1,42 @@
+services:
+  backend:
+    image: ankapieka/ecogeste-server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./back/src:/app/src
+
+  frontend:
+    image: ankapieka/ecogeste
+    ports:
+      - 3000:3000
+    volumes:
+      - ./front/src:/app/src
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  nginx:
+    image: nginx:1.21.3
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    ports:
+      - ${GATEWAY_PORT}:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - web-client-build:/web-client-build
+      - ./logs:/var/log/nginx
+
+volumes:
+  web-client-build:

@@ -1,8 +1,8 @@
-import { Arg, Mutation, Resolver , Query} from 'type-graphql';
+import { Arg, Mutation, Resolver, Query, Ctx } from 'type-graphql';
 import { User } from '../entity/User';
 import dataSource from '../utils';
-import * as argon2 from "argon2";
-import jwt from "jsonwebtoken";
+import * as argon2 from 'argon2';
+import jwt from 'jsonwebtoken';
 
 @Resolver()
 class UserResolver {
@@ -10,33 +10,54 @@ class UserResolver {
   async addUser(
     @Arg('name') name: string,
     @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('password') password: string,
+    @Arg('avatar') avatar: string,
+    @Ctx() context: any
   ): Promise<User> {
+    const { dataSource } = context;
 
-      const createUser = new User();
-      createUser.name = name;
-      createUser.email = email;
-      createUser.password = await argon2.hash(password);
-      const userFromDB = await dataSource.manager.save(User,createUser);
-      console.log(userFromDB);
-      return userFromDB;
+    try {
+      const newUser = new User();
+      newUser.name = name;
+      newUser.password = password;
+      newUser.email = email;
+      newUser.avatar = avatar;
+
+      const createUser = await dataSource.getRepository(User).save(newUser);
+
+      return createUser;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   }
 
   @Query(() => [User])
-  async getAll(
-    @Arg('name') name: string,
-    @Arg('email') email: string,
-  ) : Promise<User[]> {
+  async getAll(): Promise<User[]> {
     try {
-      const getOneUser = await dataSource
-        .getRepository(User)
-        .find({where: {name, email}});
-      return getOneUser;
+      const getUsers = await dataSource.getRepository(User).find();
+      return getUsers;
     } catch (err) {
       console.log(err);
       return [];
     }
   }
+
+  // @Query(() => [User])
+  // async getAll(
+  //   @Arg('name') name: string,
+  //   @Arg('email') email: string,
+  // ) : Promise<User[]> {
+  //   try {
+  //     const getOneUser = await dataSource
+  //       .getRepository(User)
+  //       .find({where: {name, email}});
+  //     return getOneUser;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return [];
+  //   }
+  // }
 
   @Query(() => String)
   async login(
@@ -44,23 +65,25 @@ class UserResolver {
     @Arg('password') password: string
   ): Promise<string> {
     try {
-      
-      const userFromDB = await dataSource.manager.findOne(User, { where: { email } });
+      const userFromDB = await dataSource.manager.findOne(User, {
+        where: { email },
+      });
 
-      if (!userFromDB) {
+      if (userFromDB === null || userFromDB === undefined) {
         throw new Error('User not found');
       }
 
-     
-      const isPasswordValid = await argon2.verify(userFromDB.password, password);
+      const isPasswordValid = await argon2.verify(
+        userFromDB.password,
+        password
+      );
 
       if (!isPasswordValid) {
         throw new Error('Invalid password');
       }
 
-     
       const token = jwt.sign({ userId: userFromDB.id }, 'votre_clé_secrète', {
-        expiresIn: '1h', 
+        expiresIn: '1h',
       });
 
       return token;
@@ -70,46 +93,42 @@ class UserResolver {
     }
   }
 
-
   @Mutation(() => String)
-  async deleteUser(
-    @Arg('id') id: number,
-  ) : Promise<String> {
+  async deleteUser(@Arg('id') id: number): Promise<String> {
     const deleteResult = await dataSource.getRepository(User).delete({ id });
     console.log(deleteResult);
     return 'User deleted successfully';
   }
 
   @Mutation(() => User)
-  async updateUser(@Arg("id") id: number,
-  @Arg('name', { nullable: true }) name: string,
-  @Arg('email', { nullable: true }) email: string,
-  @Arg('password', { nullable: true }) password: string
+  async updateUser(
+    @Arg('id') id: number,
+    @Arg('name', { nullable: true }) name: string,
+    @Arg('email', { nullable: true }) email: string,
+    @Arg('password', { nullable: true }) password: string
   ): Promise<User> {
-    
-  const user = await dataSource
-    .getRepository(User)
-    .findOne({where: {id}});
+    const user = await dataSource
+      .getRepository(User)
+      .findOne({ where: { id } });
 
-  if (user === null) {
-    throw new Error(`The user with id: ${id} does not exist!`);
-  }
+    if (user === null) {
+      throw new Error(`The user with id: ${id} does not exist!`);
+    }
 
-  // Effectuez les mises à jour sur l'utilisateur si les champs sont fournis
-  if (name !== "") {
-    user.name = name;
-  }
-  if (email !== "") {
-    user.email = email;
-  }
-  if (password !== "") {
-    user.password = password;
-  }
+    // Effectuez les mises à jour sur l'utilisateur si les champs sont fournis
+    if (name !== '') {
+      user.name = name;
+    }
+    if (email !== '') {
+      user.email = email;
+    }
+    if (password !== '') {
+      user.password = password;
+    }
 
-  const updatedUser = await dataSource.getRepository(User).save(user);
-  return updatedUser;
+    const updatedUser = await dataSource.getRepository(User).save(user);
+    return updatedUser;
+  }
 }
-}
-
 
 export default UserResolver;

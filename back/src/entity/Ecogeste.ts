@@ -1,10 +1,5 @@
 import { Field, ObjectType } from 'type-graphql';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Challenge } from './Challenge';
 
 @ObjectType()
@@ -24,11 +19,11 @@ export class Ecogeste {
 
   @Field()
   @Column()
-  icon: string;
+  level: number;
 
   @Field()
   @Column()
-  level: number;
+  proof: boolean;
 
   @Field()
   @Column()
